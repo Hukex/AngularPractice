@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <h5 class="display-4 text-center"> Juegos</h5>
+        <button class="btn btn-dark float-right" (click)="showOrHideID()"> {{showId?"Ocultar":"Mostrar"}} ID</button>
+    </div>
+    <div class="card-body">
+        <table class="table w-75 table-bordered mx-auto">
+            <thead class="thead-dark">
+                <th *ngIf="showId" [@inOutAnimation]>ID</th>
+                <th>Título</th>
+                <th>Fecha de Lanzamiento</th>
+                <th>Precio</th>
+                <th>PEGI</th>
+                <th>Categoria</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let juego of juegos">
+                    <td *ngIf="showId" [@inOutAnimation]>{{juego.idJuego}}</td>
+                    <td>{{juego.titulo}}</td>
+                    <td>{{juego.fechaLanzamiento | date: "dd/MM/yyyy"}}</td>
+                    <td>{{juego.precio}}€</td>
+                    <td>{{juego.pegi}}</td>
+                    <td>{{juego.categoria | uppercase}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
