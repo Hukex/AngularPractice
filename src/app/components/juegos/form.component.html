@@ -1,1 +1,13 @@
-<p>form works!</p>
+<div class="card">
+    <div class="card-header display-4 text-center">{{title}}</div>
+    <div class="card-body">
+        <form (ngSubmit)="create()" class="w-50 mx-auto">
+            <div class="form-group">
+                <label for="titulo" class="col-form-label col-sm-3">Título</label>
+                <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo" placeholder="Titulo">
+            </div>
+            <button type="submit" class="btn btn-primary w-50">Crear</button>
+            <button routerLink="/juegos" class="btn btn-secondary w-50">Cancelar</button>
+        </form>
+    </div>
+</div>
