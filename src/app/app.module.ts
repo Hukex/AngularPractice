@@ -8,10 +8,12 @@ import { AlertComponent } from './components/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+
 import { RouterModule, Routes } from '@angular/router';
 import { CompaniasComponent } from './components/companias/companias.component';
 import { FormComponent as JuegosFormComponent } from './components/juegos/form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/juegos', pathMatch: 'full' },
@@ -31,7 +33,15 @@ const ROUTES: Routes = [
     JuegosFormComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, HttpClientModule, MatProgressSpinnerModule, RouterModule.forRoot(ROUTES), FormsModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    RouterModule.forRoot(ROUTES),
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule, 
+
   ],
   providers: [],
   bootstrap: [AppComponent]

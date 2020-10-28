@@ -11,7 +11,7 @@
         <button class="btn btn-info float-right mr-3" type="button" routerLink="/juegos/form">Crear Juego</button>
     </div>
     <div class="card-body">
-        <table class="table w-75 table-bordered mx-auto">
+        <table class="table w-75 table-bordered mx-auto table-hover">
             <thead class="thead-dark">
                 <th *ngIf="showId" [@inOutAnimation]>ID</th>
                 <th>Título</th>
@@ -19,6 +19,7 @@
                 <th>Precio</th>
                 <th>PEGI</th>
                 <th>Categoria</th>
+                <th>Compañías</th>
             </thead>
             <tbody>
                 <tr *ngFor="let juego of juegos">
@@ -28,6 +29,13 @@
                     <td>{{juego.precio}}€</td>
                     <td>{{juego.pegi}}</td>
                     <td>{{juego.categoria | uppercase}}</td>
+                    <td>
+                        <table class="table">
+                            <tr *ngFor="let compania of juego.companies">
+                                <td class="inline">{{compania.nombre}}</td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </tbody>
         </table>

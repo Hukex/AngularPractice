@@ -1,1 +1,38 @@
-<p>companias works!</p>
+<div *ngIf="companies?.length==0" class="alert alert-info">
+    No existen compañias en base de datos
+</div>
+<div *ngIf="!companies" class="d-flex align-items-center justify-content-center h-100">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="card" *ngIf="companies">
+    <div class="card-header">
+        <h5 class="display-4 text-center"> Compañías</h5>
+        <button class="btn btn-dark float-right" (click)="showOrHideID()"> {{showId?"Ocultar":"Mostrar"}} ID</button>
+        <!-- <button class="btn btn-info float-right mr-3" type="button" routerLink="/companies/form">Añadir Compañía</button> -->
+    </div>
+    <div class="card-body">
+        <table class="table w-75 table-bordered mx-auto table-hover">
+            <thead class="thead-dark">
+                <th *ngIf="showId" [@inOutAnimation]>ID</th>
+                <th>Nombre</th>
+                <th>CIF</th>
+                <th>Juegos</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let compania of companies">
+                    <td *ngIf="showId" [@inOutAnimation]>{{compania.idCompany}}</td>
+                    <td>{{compania.nombre}}</td>
+                    <td>{{compania.cif}}</td>
+                    <td>
+                        <table class="table">
+                            <tr *ngFor="let juego of compania.juegos">
+                                <td class="inline">{{juego.titulo}}</td>
+                            </tr>
+                        </table>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

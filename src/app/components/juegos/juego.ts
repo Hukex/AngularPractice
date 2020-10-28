@@ -1,3 +1,5 @@
+import { Compania } from '../companias/compania';
+
 export class Juego {
     idJuego: number
     titulo: String
@@ -5,5 +7,5 @@ export class Juego {
     precio: number
     pegi: number
     categoria: String
-    companies: Object[]
+    companies: Compania[]
 }
