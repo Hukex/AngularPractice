@@ -1,7 +1,14 @@
-<div class="card">
+<div *ngIf="juegos?.length==0" class="alert alert-info">
+    No existen juegos en base de datos
+</div>
+<div *ngIf="!juegos" class="d-flex align-items-center justify-content-center h-100">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="card" *ngIf="juegos">
     <div class="card-header">
         <h5 class="display-4 text-center"> Juegos</h5>
         <button class="btn btn-dark float-right" (click)="showOrHideID()"> {{showId?"Ocultar":"Mostrar"}} ID</button>
+        <button class="btn btn-info float-right mr-3" type="button" routerLink="/juegos/form">Crear Juego</button>
     </div>
     <div class="card-body">
         <table class="table w-75 table-bordered mx-auto">
