@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header display-4 text-center">{{title}}</div>
     <div class="card-body">
-        <form (ngSubmit)="create()" id="myForm" class="w-50 mx-auto font-weight-bold text-info">
+        <form id="myForm" class="w-50 mx-auto font-weight-bold text-info">
             <div class="row">
                 <div class="col">
                     <label for="titulo" class="col-form-label">Título</label>
@@ -9,17 +9,17 @@
                 </div>
                 <div class="col">
                     <label for="fechaLanzamiento" class="col-form-label">Fecha de Lanzamiento</label>
-                    <input name="fechaLanzamiento" type="date" class="form-control" [(ngModel)]="juego.fechaLanzamiento">
+                    <input name="fechaLanzamiento" type="date" class="form-control" max="2030-10-29" min="1900-1-1" [(ngModel)]="juego.fechaLanzamiento">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="precio" class="col-form-label">Precio</label>
-                    <input name="precio" type="text" class="form-control" [(ngModel)]="juego.precio">
+                    <input name="precio" type="number" min="0" class="form-control" [(ngModel)]="juego.precio">
                 </div>
                 <div class="col">
                     <label for="pegi" class="col-form-label">PEGI</label>
-                    <input name="pegi" type="text" class="form-control" [(ngModel)]="juego.pegi">
+                    <input name="pegi" type="number" min="0" max="18" class="form-control" [(ngModel)]="juego.pegi">
                 </div>
             </div>
             <div class="row mt-3">
@@ -28,7 +28,7 @@
                         <mat-label>Categoria</mat-label>
                         <mat-select [(ngModel)]="juego.categoria" name="categoria">
                             <mat-option *ngFor="let enum of enums" [value]="enum">
-                                {{enum}}
+                                {{enum| titlecase}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -36,7 +36,7 @@
                 <div class="col">
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Compañías</mat-label>
-                        <mat-select [formControl]="toppings" multiple [(ngModel)]="juego.companies" name="companies">
+                        <mat-select [formControl]="toppings" multiple [(ngModel)]="juego.companies" name="companies" [compareWith]="compareCompany">
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0]?.nombre : ''}}
                                 <span *ngIf="toppings.value?.length >
@@ -49,7 +49,8 @@
                     </mat-form-field>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Crear</button>
+            <button (click)="create()" *ngIf="!juego.idJuego" class="btn btn-primary w-100">Crear</button>
+            <button (click)="update()" *ngIf="juego.idJuego" class="btn btn-success w-100">Editar</button>
             <button routerLink="/juegos" class="btn btn-secondary w-100 mt-3">Cancelar</button>
         </form>
     </div>

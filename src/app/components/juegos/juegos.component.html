@@ -1,43 +1,48 @@
-<div *ngIf="juegos?.length==0" class="alert alert-info">
-    No existen juegos en base de datos
-</div>
-<div *ngIf="!juegos" class="d-flex align-items-center justify-content-center h-100">
+<div *ngIf="!juegos && showSpinner" class="d-flex align-items-center justify-content-center h-75">
     <mat-spinner></mat-spinner>
 </div>
 <div class="card" *ngIf="juegos">
     <div class="card-header">
         <h5 class="display-4 text-center"> Juegos</h5>
-        <button class="btn btn-dark float-right" (click)="showOrHideID()"> {{showId?"Ocultar":"Mostrar"}} ID</button>
-        <button class="btn btn-info float-right mr-3" type="button" routerLink="/juegos/form">Crear Juego</button>
+        <div class="w-100 d-flex justify-content-center">
+            <button class="btn btn-success mr-3" type="button" routerLink="/juegos/form">Crear Juego</button>
+            <button class=" btn btn-dark " (click)="showOrHideID() "> {{showId?"Ocultar ":"Mostrar "}} ID</button>
+        </div>
     </div>
-    <div class="card-body">
-        <table class="table w-75 table-bordered mx-auto table-hover">
-            <thead class="thead-dark">
-                <th *ngIf="showId" [@inOutAnimation]>ID</th>
+    <div class="card-body ">
+        <table class="table w-75 table-bordered mx-auto table-hover text-center ">
+            <thead class="thead-dark ">
+                <th *ngIf="showId " [@inOutAnimation]>ID</th>
                 <th>Título</th>
                 <th>Fecha de Lanzamiento</th>
                 <th>Precio</th>
                 <th>PEGI</th>
                 <th>Categoria</th>
                 <th>Compañías</th>
+                <th>Opciones</th>
             </thead>
             <tbody>
-                <tr *ngFor="let juego of juegos">
-                    <td *ngIf="showId" [@inOutAnimation]>{{juego.idJuego}}</td>
+                <tr *ngFor="let juego of juegos ">
+                    <td *ngIf="showId " [@inOutAnimation]>{{juego.idJuego}}</td>
                     <td>{{juego.titulo}}</td>
-                    <td>{{juego.fechaLanzamiento | date: "dd/MM/yyyy"}}</td>
+                    <td>{{juego.fechaLanzamiento | date: "dd/MM/yyyy "}}</td>
                     <td>{{juego.precio}}€</td>
                     <td>{{juego.pegi}}</td>
-                    <td>{{juego.categoria | uppercase}}</td>
+                    <td>{{juego.categoria | titlecase}}</td>
+                    <td class="text-left ">
+                        <ul>
+                            <li *ngFor="let compania of juego.companies " class="text-nowrap ">{{compania.nombre}}</li>
+                        </ul>
+                    </td>
                     <td>
-                        <table class="table">
-                            <tr *ngFor="let compania of juego.companies">
-                                <td class="inline">{{compania.nombre}}</td>
-                            </tr>
-                        </table>
+                        <button class="btn btn-info w-100 mb-2 " type="button " routerLink="/juegos/form/{{juego.idJuego}} ">Editar Juego</button>
+                        <button class="btn btn-danger w-100 " type="button " (click)="delete(juego.idJuego) ">Borrar Juego</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div *ngIf="juegos?.length==0 " class="alert alert-info w-75 mx-auto text-center ">
+            No existen juegos en base de datos
+        </div>
     </div>
 </div>

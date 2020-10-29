@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './components/app/app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
-import { AlertComponent } from './components/alert/alert.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,11 +13,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompaniasComponent } from './components/companias/companias.component';
 import { FormComponent as JuegosFormComponent } from './components/juegos/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/juegos', pathMatch: 'full' },
   { path: 'juegos', component: JuegosComponent },
   { path: 'juegos/form', component: JuegosFormComponent },
+  { path: 'juegos/form/:id', component: JuegosFormComponent },
   { path: 'companias', component: CompaniasComponent }
 
 ]
@@ -28,7 +29,6 @@ const ROUTES: Routes = [
     AppComponent,
     HeaderComponent,
     JuegosComponent,
-    AlertComponent,
     CompaniasComponent,
     JuegosFormComponent
   ],
@@ -40,8 +40,8 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule, 
-
+    MatSelectModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
