@@ -38,10 +38,12 @@ export class CompaniasComponent implements OnInit {
 
   companies: Compania[]
   showId = true
+  showSpinner = true
 
   ngOnInit(): void {
     this.companiaService.getCompanies().subscribe(
-      data => this.companies = data
+      data => this.companies = data,
+      err => err ? this.showSpinner = false : ''
     )
   }
 

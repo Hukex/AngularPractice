@@ -24,7 +24,7 @@ export class JuegosService {
   getJuegos(): Observable<Juego[]> {
     return this._http.get<Juego[]>(this.baseUrl + "juegos").pipe(
       catchError(e => {
-        this.toastr.error(`Error al consultar los juegos: "${e.message}"`, e.statusText,{disableTimeOut:true,positionClass:'toast-top-full-width'});
+        this.toastr.error(`Error al consultar los juegos: "${e.message}"`, e.statusText, { disableTimeOut: true, positionClass: 'toast-top-full-width' });
         return throwError(e);
       })
     )
@@ -38,20 +38,30 @@ export class JuegosService {
     )
   }
   addJuego(juego: Juego): Observable<Juego> {
-
     return this._http.post<Juego>(this.baseUrl + "juegos", juego, this.httpOptions).pipe(
       catchError(e => {
-        this.toastr.error(`Error al añadir el juego: "${e.message}"`, 'Error');
+        if (e.status == 400) {
+          e.error.errorMessage.replace('[', '').replace(']', '').split(', ').reverse().forEach(errorMessage => {
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          this.toastr.error(`Error al añadir el juego: "${e.message}"`, 'Error');
+        }
         return throwError(e);
       }));
   }
   updateJuego(juego: Juego): Observable<Juego> {
     return this._http.put<Juego>(this.baseUrl + "juegos/" + juego.idJuego, juego, this.httpOptions).pipe(
       catchError(e => {
-        this.toastr.error(`Error al actualizar el juego: "${e.message}"`, 'Error');
+        if (e.status == 400) {
+          e.error.errorMessage.replace('[', '').replace(']', '').split(', ').reverse().forEach(errorMessage => {
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          this.toastr.error(`Error al actualizar el juego: "${e.message}"`, 'Error');
+        }
         return throwError(e);
-      })
-    );
+      }));
   }
 
   deleteJuego(juego: Juego): Observable<Juego> {

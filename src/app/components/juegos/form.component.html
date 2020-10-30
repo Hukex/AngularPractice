@@ -1,42 +1,67 @@
 <div class="card">
     <div class="card-header display-4 text-center">{{title}}</div>
     <div class="card-body">
-        <form id="myForm" class="w-50 mx-auto font-weight-bold text-info">
+        <form id="myForm" #juegoForm="ngForm" class="w-50 mx-auto text-info">
             <div class="row">
                 <div class="col">
-                    <label for="titulo" class="col-form-label">Título</label>
-                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo" placeholder="Titulo">
+                    <label for="titulo" class="col-form-label font-weight-bold">Título</label>
+                    <input name="titulo" type="text" class="form-control" [(ngModel)]="juego.titulo" placeholder="Titulo" required #titulo="ngModel">
+                    <div [@inOutAnimation] class="alert alert-danger" *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)">
+                        <div *ngIf="titulo.errors">
+                            Debe rellenar el título
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <label for="fechaLanzamiento" class="col-form-label">Fecha de Lanzamiento</label>
-                    <input name="fechaLanzamiento" type="date" class="form-control" max="2030-10-29" min="1900-1-1" [(ngModel)]="juego.fechaLanzamiento">
+                    <label for="fechaLanzamiento" class="col-form-label font-weight-bold">Fecha de Lanzamiento</label>
+                    <input name="fechaLanzamiento" type="date" class="form-control" max="2030-10-29" min="1900-1-1" required #fechaLanzamiento="ngModel" [(ngModel)]="juego.fechaLanzamiento">
+                    <div [@inOutAnimation] class="alert alert-danger" *ngIf="fechaLanzamiento.invalid && (fechaLanzamiento.dirty || fechaLanzamiento.touched)">
+                        <div *ngIf="fechaLanzamiento.errors.required">
+                            Debe rellenar la fecha de lanzamiento
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="precio" class="col-form-label">Precio</label>
-                    <input name="precio" type="number" min="0" class="form-control" [(ngModel)]="juego.precio">
+                    <label for="precio" class="col-form-label font-weight-bold">Precio</label>
+                    <input name="precio" type="number" min="0" pattern="[0-9]*" class="form-control" required #precio="ngModel" [(ngModel)]="juego.precio">
+                    <div [@inOutAnimation] class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+                        <div *ngIf="precio.errors.required || precio.errors.pattern">
+                            Debe rellenar el precio
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <label for="pegi" class="col-form-label">PEGI</label>
-                    <input name="pegi" type="number" min="0" max="18" class="form-control" [(ngModel)]="juego.pegi">
+                    <label for="pegi" class="col-form-label font-weight-bold">PEGI</label>
+                    <input name="pegi" type="number" min="0" max="18" pattern="^(0?[1-9]|[1][0-8])$" class="form-control" required #pegi="ngModel" [(ngModel)]="juego.pegi">
+                    <div [@inOutAnimation] class="alert alert-danger" *ngIf="pegi.invalid && (pegi.dirty || pegi.touched)">
+                        <div *ngIf="pegi.errors.required || pegi.errors.pattern">
+                            Debe rellenar el PEGI
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col">
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Categoria</mat-label>
-                        <mat-select [(ngModel)]="juego.categoria" name="categoria">
+                        <mat-select [(ngModel)]="juego.categoria" name="categoria" required #categoria="ngModel">
                             <mat-option *ngFor="let enum of enums" [value]="enum">
                                 {{enum| titlecase}}
                             </mat-option>
                         </mat-select>
+                        <div [@inOutAnimation] class="alert alert-danger" *ngIf="categoria.invalid && categoria.touched">
+                            <div *ngIf="categoria.errors.required">
+                                Debe elegir la categoria
+                            </div>
+                        </div>
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Compañías</mat-label>
-                        <mat-select [formControl]="toppings" multiple [(ngModel)]="juego.companies" name="companies" [compareWith]="compareCompany">
+                        <mat-select [formControl]="toppings" multiple [(ngModel)]="juego.companies" name="companies" [compareWith]="compareCompany" required>
                             <mat-select-trigger>
                                 {{toppings.value ? toppings.value[0]?.nombre : ''}}
                                 <span *ngIf="toppings.value?.length >
@@ -46,11 +71,16 @@
                             </mat-select-trigger>
                             <mat-option *ngFor="let topping of opciones" [value]="topping">{{topping.nombre}}</mat-option>
                         </mat-select>
+                        <div [@inOutAnimation] class="alert alert-danger" *ngIf="toppings.invalid && toppings.touched">
+                            <div *ngIf="toppings.errors.required">
+                                Debe completar este campo
+                            </div>
+                        </div>
                     </mat-form-field>
                 </div>
             </div>
-            <button (click)="create()" *ngIf="!juego.idJuego" class="btn btn-primary w-100">Crear</button>
-            <button (click)="update()" *ngIf="juego.idJuego" class="btn btn-success w-100">Editar</button>
+            <button (click)="create()" *ngIf="!juego.idJuego" class="btn btn-primary w-100" [disabled]="!juegoForm.form.valid">Crear</button>
+            <button (click)="update()" *ngIf="juego.idJuego" class="btn btn-success w-100" [disabled]="!juegoForm.form.valid">Editar</button>
             <button routerLink="/juegos" class="btn btn-secondary w-100 mt-3">Cancelar</button>
         </form>
     </div>

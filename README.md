@@ -1,27 +1,52 @@
-# Blockbuster
+# INDEX 📋
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
+* **AngularPractice** 🏆
+  + [**About project**](#about-project) ⭐
+  + [**Preview**](#preview) 🔍
+  + [**Technologies**](#technologies) 💻
+  + [**Setup**](#setup) 🔧
+  + [**Usage**](#usage) 📋
+  + [**Status**](#status) ⚪
+  + [**Contact**](#contact) 📞
 
-## Development server
+# About project⭐
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**Date**: October, 2020.   
 
-## Code scaffolding
+This project was just to practice Angular and also to show my tutor how my code was made.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Preview🔍
 
-## Build
+![GIF](https://github.com/Hukex/AngularPractice/blob/master/readmefiles/preview.gif)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Technologies💻
 
-## Running unit tests
+* **Angular CLI 10.0.8**
+* **Visual Studio Code**
+* **Backend SpringBoot**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Setup🔧
 
-## Running end-to-end tests
+-Install the necessary technologies. The backend is similar to my other project(SpringBootPractice)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+-Clone this repository.
 
-## Further help
+``` bash
+git clone https://github.com/Hukex/AngularPractice.git
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Usage📋
+
+Just open a console and write ng serve -o 
+
+# Status⚪
+
+**Finished**
+
+It was only for practicing so it's finished.
+
+# Contact📞
+
+My name is [Fernando](https://www.linkedin.com/in/fevm/), you can contact me if you desire!
+
+## 😃 Thanks for reading. 👋

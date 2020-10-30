@@ -16,13 +16,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/dialog/confirm-dialog/confirm-dialog.component';
+import { LoginComponent } from './components/login/login.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/juegos', pathMatch: 'full' },
   { path: 'juegos', component: JuegosComponent },
   { path: 'juegos/form', component: JuegosFormComponent },
   { path: 'juegos/form/:id', component: JuegosFormComponent },
-  { path: 'companias', component: CompaniasComponent }
+  { path: 'companias', component: CompaniasComponent },
+  { path: 'login', component: LoginComponent }
+
 
 ]
 
@@ -33,7 +36,8 @@ const ROUTES: Routes = [
     JuegosComponent,
     CompaniasComponent,
     JuegosFormComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

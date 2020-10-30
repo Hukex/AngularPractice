@@ -6,10 +6,35 @@ import { JuegosService } from './juegos.service';
 import { Compania } from '../companias/compania';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.sass']
+  styleUrls: ['./form.component.sass'],
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('.4s ease-out',
+              style({ height: 60, opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ height: 60, opacity: 1 }),
+            animate('.4s ease-in',
+              style({ height: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class FormComponent implements OnInit {
 
@@ -43,7 +68,7 @@ export class FormComponent implements OnInit {
 
   create(): void {
     this.juegoService.addJuego(this.juego).subscribe(val => {
-      (document.querySelector("#myForm") as HTMLFormElement).reset()
+      this.router.navigate(['/juegos'])
       this.toastr.success(`"${val.titulo}" se ha añadido correctamente en la base de datos`, 'Notificación');
     })
   }

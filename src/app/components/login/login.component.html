@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header display-4 text-center">Login</div>
+    <div class="card-body">
+        <form #loginForm="ngForm" class="w-25 mx-auto text-info text-center">
+            <div class="row">
+                <div class="col">
+                    <label for="username" class="col-form-label font-weight-bold">Usuario</label>
+                    <input name="username" type="text" class="form-control" [(ngModel)]="credentials.username" placeholder="usuario" required #username="ngModel">
+                    <div [@inOutAnimation] class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <div *ngIf="username.errors.required">
+                            Debe rellenar el usuario
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="password" class="col-form-label font-weight-bold">Contraseña</label>
+                    <input name="password" type="password" class="form-control" required #password="ngModel" placeholder="contraseña" [(ngModel)]="credentials.password">
+                    <div [@inOutAnimation] class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <div *ngIf="password.errors.required">
+                            Debe rellenar la contraseña
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button (click)="login()" class="btn btn-primary w-100 mt-3" [disabled]="!loginForm.form.valid">Login</button>
+        </form>
+    </div>
+</div>
