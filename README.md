@@ -15,9 +15,11 @@
 
 This project was just to practice Angular and also to show my tutor how my code was made.
 
+As you can see I'm mixing angular material design with bootstrap. It was because I wannaed test with some items from material design. 
+
 # Preview🔍
 
-![GIF](https://github.com/Hukex/AngularPractice/blob/master/readmefiles/preview.gif)
+![GIF](https://github.com/Hukex/AngularPractice/blob/main/readmefiles/preview.gif)
 
 # Technologies💻
 
@@ -35,9 +37,17 @@ This project was just to practice Angular and also to show my tutor how my code 
 git clone https://github.com/Hukex/AngularPractice.git
 ```
 
+``` bash
+npm i
+```
+
 # Usage📋
 
-Just open a console and write ng serve -o 
+Just open a console and write 
+
+``` bash
+ng serve -o 
+```
 
 # Status⚪
 
