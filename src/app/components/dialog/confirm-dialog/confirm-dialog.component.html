@@ -1,0 +1,10 @@
+<div class="p-2">
+    <h2 class="text-center" mat-dialog-title>Borrar {{titulo}} con el siguiente id({{id}})</h2>
+    <mat-dialog-content class="mat-typography">
+        <h3>¿Estás seguro que quieres borrar este juego?</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="d-flex justify-content-around">
+        <button mat-button mat-dialog-close class="btn btn-info">Cancelar</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-danger">Borrar</button>
+    </mat-dialog-actions>
+</div>

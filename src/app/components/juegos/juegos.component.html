@@ -35,8 +35,8 @@
                         </ul>
                     </td>
                     <td>
-                        <button class="btn btn-info w-100 mb-2 " type="button " routerLink="/juegos/form/{{juego.idJuego}} ">Editar Juego</button>
-                        <button class="btn btn-danger w-100 " type="button " (click)="delete(juego.idJuego) ">Borrar Juego</button>
+                        <button class="btn btn-info w-100 mb-2 " type="button " routerLink="/juegos/form/{{juego.idJuego}}">Editar Juego</button>
+                        <button class="btn btn-danger w-100 " type="button " (click)="delete(juego.idJuego,juego.titulo) ">Borrar Juego</button>
                     </td>
                 </tr>
             </tbody>
@@ -45,4 +45,3 @@
             No existen juegos en base de datos
         </div>
     </div>
-</div>

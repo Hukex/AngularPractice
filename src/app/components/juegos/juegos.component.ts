@@ -3,6 +3,8 @@ import { Juego } from './juego';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { JuegosService } from './juegos.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import {  ConfirmDialogComponent } from '../dialog/confirm-dialog/confirm-dialog.component'
 
 @Component({
   selector: 'app-juegos',
@@ -39,7 +41,8 @@ export class JuegosComponent implements OnInit {
   showId = false
   constructor(
     private juegoService: JuegosService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public dialog: MatDialog
   ) { }
 
   showOrHideID(): void {
@@ -49,16 +52,22 @@ export class JuegosComponent implements OnInit {
   ngOnInit(): void {
     this.loadGames()
   }
-
-  delete(id: number): void {
-    this.juegoService.getJuego(id).subscribe(data => {
-      this.juegoService.deleteJuego(data).subscribe(val => {
-        this.toastr.info(`"${data.titulo}" se ha borrado correctamente de la base de datos`, 'Notificación');
-        this.loadGames()
-      })
-    })
+  delete(id: number,titulo: String): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,{data: {
+      id: id,
+      titulo: titulo
+    }});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.juegoService.getJuego(id).subscribe(data => {
+          this.juegoService.deleteJuego(data).subscribe(val => {
+            this.toastr.info(`"${data.titulo}" se ha borrado correctamente de la base de datos`, 'Notificación');
+            this.loadGames()
+          })
+        })
+      }
+    });
   }
-
   loadGames(): void {
     this.juegoService.getJuegos().subscribe(
       data => this.juegos = data,
