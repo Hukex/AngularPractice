@@ -17,7 +17,7 @@ This project was just to practice Angular and also to show my tutor how my code 
 
 # Preview🔍
 
- ![GIF](https://github.com/Hukex/AngularPractice/blob/master/readmefiles/preview.gif)
+ ![GIF](https://github.com/Hukex/AngularPractice/blob/master/readmefiles/preview.gif?raw)
 
 # Technologies💻
 
