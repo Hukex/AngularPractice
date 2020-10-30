@@ -19,7 +19,7 @@ As you can see I'm mixing angular material design with bootstrap. It was because
 
 # Preview🔍
 
-![GIF](https://github.com/Hukex/AngularPractice/blob/main/readmefiles/preview.gif)
+ ![GIF](https://github.com/Hukex/AngularPractice/blob/main/readmefiles/preview.gif)
 
 # Technologies💻
 
